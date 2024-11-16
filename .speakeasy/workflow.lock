@@ -2,8 +2,8 @@ speakeasyVersion: 1.438.1
 sources:
     auth0_example_oas:
         sourceNamespace: auth-0-example-oas
-        sourceRevisionDigest: sha256:bddb777336406de0186e9ba6ca8f4a6778231a6ccc841981c6cb5be20abdd3c9
-        sourceBlobDigest: sha256:ec5b1b709207450d33bb9554fc9c13b5995ad93de1f9d14ea5726c4ed4cdd86b
+        sourceRevisionDigest: sha256:c362cc408841f6ae371fb48de676d944dbe1d1cae52eff472f2913552b6d5296
+        sourceBlobDigest: sha256:9e84793a3b07147cb72f3610faa2daa3f71f8a0e3e1500d7eab92b85c194b84f
         tags:
             - latest
     petstore-oas:
@@ -16,8 +16,8 @@ targets:
     auth0_example:
         source: auth0_example_oas
         sourceNamespace: auth-0-example-oas
-        sourceRevisionDigest: sha256:bddb777336406de0186e9ba6ca8f4a6778231a6ccc841981c6cb5be20abdd3c9
-        sourceBlobDigest: sha256:ec5b1b709207450d33bb9554fc9c13b5995ad93de1f9d14ea5726c4ed4cdd86b
+        sourceRevisionDigest: sha256:c362cc408841f6ae371fb48de676d944dbe1d1cae52eff472f2913552b6d5296
+        sourceBlobDigest: sha256:9e84793a3b07147cb72f3610faa2daa3f71f8a0e3e1500d7eab92b85c194b84f
     petstore:
         source: auth0_example_oas
         sourceNamespace: auth-0-example-oas

@@ -278,7 +278,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  serverURL: "https://localhost:3000",
+  serverURL: "http://localhost:3000",
   security: {
     clientId: process.env["my-client-id"] ?? "",
     clientSecret: process.env["my-client-secret"] ?? "",
