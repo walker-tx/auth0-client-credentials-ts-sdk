@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    auth0_example_oas:
+        inputs:
+            - location: http://localhost:3000/openapi
+        registry:
+            location: registry.speakeasyapi.dev/walker/walker/auth-0-example-oas
+targets:
+    auth0_example:
+        target: typescript
+        source: auth0_example_oas

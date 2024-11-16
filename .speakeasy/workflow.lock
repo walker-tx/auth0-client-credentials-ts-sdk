@@ -1,0 +1,38 @@
+speakeasyVersion: 1.438.1
+sources:
+    auth0_example_oas:
+        sourceNamespace: auth-0-example-oas
+        sourceRevisionDigest: sha256:bddb777336406de0186e9ba6ca8f4a6778231a6ccc841981c6cb5be20abdd3c9
+        sourceBlobDigest: sha256:ec5b1b709207450d33bb9554fc9c13b5995ad93de1f9d14ea5726c4ed4cdd86b
+        tags:
+            - latest
+    petstore-oas:
+        sourceNamespace: petstore-oas
+        sourceRevisionDigest: sha256:676e225b7e12b2607f423b22547afe89d40b11c7697ba7c8eb6229dd5a03c9d4
+        sourceBlobDigest: sha256:d2e832215415ceadf5d9e6bed4cfc97d3d8b9b3493beb21553274cd181bda8cf
+        tags:
+            - latest
+targets:
+    auth0_example:
+        source: auth0_example_oas
+        sourceNamespace: auth-0-example-oas
+        sourceRevisionDigest: sha256:bddb777336406de0186e9ba6ca8f4a6778231a6ccc841981c6cb5be20abdd3c9
+        sourceBlobDigest: sha256:ec5b1b709207450d33bb9554fc9c13b5995ad93de1f9d14ea5726c4ed4cdd86b
+    petstore:
+        source: auth0_example_oas
+        sourceNamespace: auth-0-example-oas
+        sourceRevisionDigest: sha256:530036b367d2dae4647399f0d022766d7c28dd8ad7502812a9b669c1598ad751
+        sourceBlobDigest: sha256:f7ddb53202f63741062205622d04e432de50d3df4ed2f7aae1a6179a64d128a5
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        auth0_example_oas:
+            inputs:
+                - location: http://localhost:3000/openapi
+            registry:
+                location: registry.speakeasyapi.dev/walker/walker/auth-0-example-oas
+    targets:
+        auth0_example:
+            target: typescript
+            source: auth0_example_oas
