@@ -3,6 +3,7 @@
  */
 
 import { RequestInput } from "../lib/http.js";
+import { ClientCredentialsHook } from "./clientcredentials.js";
 import {
   AfterErrorContext,
   AfterErrorHook,
@@ -27,6 +28,14 @@ export class SDKHooks implements Hooks {
   afterErrorHooks: AfterErrorHook[] = [];
 
   constructor() {
+    [
+      new ClientCredentialsHook(),
+    ].forEach(hook => {
+      this.registerSDKInitHook(hook);
+      this.registerBeforeRequestHook(hook);
+      this.registerAfterErrorHook(hook);
+    });
+
     initHooks(this);
   }
 

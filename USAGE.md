@@ -3,12 +3,14 @@
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo();
+  const result = await speakeasyAuth0Example.todos.list();
 
   // Handle the result
   console.log(result);

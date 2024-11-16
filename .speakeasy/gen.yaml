@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: http://localhost:3000/openapi
+    schemaPath: openapi.yaml
   sdkClassName: SpeakeasyAuth0Example
   maintainOpenAPIOrder: true
   usageSnippets:
@@ -13,10 +13,10 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: false
+    oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.2.0
+  version: 0.4.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}

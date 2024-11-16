@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 84a8ec70-6436-43c1-88e4-d10c31e2adfd
 management:
-  docChecksum: a874c0dc351f63220d1f6be9ad7373d3
+  docChecksum: 81c183acbb59c36d1bc0db5a666b3288
   docVersion: 1.0.0
   speakeasyVersion: 1.438.1
   generationVersion: 2.457.2
-  releaseVersion: 0.2.0
-  configChecksum: 529a6503f67e76e38178162138b5431c
+  releaseVersion: 0.4.2
+  configChecksum: c33eb4995520b37e0922610f13e9e08b
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -16,8 +16,10 @@ features:
     envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    groups: 2.81.2
+    nameOverrides: 2.81.2
+    oauth2ClientCredentials: 0.2.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -36,11 +38,14 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/security.md
   - docs/models/components/todo.md
+  - docs/models/errors/errort.md
   - docs/sdks/speakeasyauth0example/README.md
+  - docs/sdks/todos/README.md
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/getTodo.ts
+  - src/funcs/todosList.ts
+  - src/hooks/clientcredentials.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -65,11 +70,13 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/components/todo.ts
   - src/models/errors/apierror.ts
+  - src/models/errors/error.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
+  - src/sdk/todos.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -271,3 +278,10 @@ examples:
       responses:
         "200":
           application/json: [{"id": "<RANDOM_UUID>", "title": "Buy milk", "completed": false}]
+  listTodos:
+    "":
+      responses:
+        "200":
+          application/json: [{"id": "<RANDOM_UUID>", "title": "Buy milk", "completed": false}]
+        "401":
+          application/json: {"message": "Unauthorized", "code": 401}

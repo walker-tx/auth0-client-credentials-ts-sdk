@@ -3,10 +3,11 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
 
 export type Security = {
-  oAuth2ClientCredentialScheme?: string | undefined;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
+  tokenURL?: string | undefined;
 };
 
 /** @internal */
@@ -15,16 +16,18 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  OAuth2ClientCredentialScheme: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "OAuth2ClientCredentialScheme": "oAuth2ClientCredentialScheme",
-  });
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
+  tokenURL: z.string().default(
+    "https://dev-ttwo7r05pkr6nozn.us.auth0.com/oauth/token",
+  ),
 });
 
 /** @internal */
 export type Security$Outbound = {
-  OAuth2ClientCredentialScheme?: string | undefined;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
+  tokenURL: string;
 };
 
 /** @internal */
@@ -33,11 +36,11 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  oAuth2ClientCredentialScheme: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    oAuth2ClientCredentialScheme: "OAuth2ClientCredentialScheme",
-  });
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
+  tokenURL: z.string().default(
+    "https://dev-ttwo7r05pkr6nozn.us.auth0.com/oauth/token",
+  ),
 });
 
 /**

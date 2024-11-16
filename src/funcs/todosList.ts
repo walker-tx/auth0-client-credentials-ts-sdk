@@ -17,18 +17,20 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { Result } from "../types/fp.js";
 
 /**
  * List all todos
  */
-export async function getTodo(
+export async function todosList(
   client: SpeakeasyAuth0ExampleCore,
   options?: RequestOptions,
 ): Promise<
   Result<
     Array<components.Todo>,
+    | errors.ErrorT
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -44,21 +46,16 @@ export async function getTodo(
     Accept: "application/json",
   });
 
-  const secConfig = await extractSecurity(
-    client._options.oAuth2ClientCredentialScheme,
-  );
-  const securityInput = secConfig == null
-    ? {}
-    : { oAuth2ClientCredentialScheme: secConfig };
+  const securityInput = await extractSecurity(client._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "get_/todo",
+    operationID: "listTodos",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.oAuth2ClientCredentialScheme,
+    securitySource: client._options.security,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -89,7 +86,7 @@ export async function getTodo(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["401", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -98,8 +95,13 @@ export async function getTodo(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     Array<components.Todo>,
+    | errors.ErrorT
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -109,8 +111,9 @@ export async function getTodo(
     | ConnectionError
   >(
     M.json(200, z.array(components.Todo$inboundSchema)),
+    M.jsonErr(401, errors.ErrorT$inboundSchema),
     M.fail(["4XX", "5XX"]),
-  )(response);
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

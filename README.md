@@ -84,12 +84,14 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo();
+  const result = await speakeasyAuth0Example.todos.list();
 
   // Handle the result
   console.log(result);
@@ -106,9 +108,10 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [SpeakeasyAuth0Example SDK](docs/sdks/speakeasyauth0example/README.md)
 
-* [getTodo](docs/sdks/speakeasyauth0example/README.md#gettodo) - List all todos
+### [todos](docs/sdks/todos/README.md)
+
+* [list](docs/sdks/todos/README.md#list) - List all todos
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -128,7 +131,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`getTodo`](docs/sdks/speakeasyauth0example/README.md#gettodo) - List all todos
+- [`todosList`](docs/sdks/todos/README.md#list) - List all todos
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -143,12 +146,14 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo({
+  const result = await speakeasyAuth0Example.todos.list({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -184,12 +189,14 @@ const speakeasyAuth0Example = new SpeakeasyAuth0Example({
     },
     retryConnectionErrors: false,
   },
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo();
+  const result = await speakeasyAuth0Example.todos.list();
 
   // Handle the result
   console.log(result);
@@ -215,25 +222,28 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `getTodo` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `list` method may throw the following errors:
 
-| Error Type      | Status Code | Content Type |
-| --------------- | ----------- | ------------ |
-| errors.APIError | 4XX, 5XX    | \*/\*        |
+| Error Type      | Status Code | Content Type     |
+| --------------- | ----------- | ---------------- |
+| errors.ErrorT   | 401         | application/json |
+| errors.APIError | 4XX, 5XX    | \*/\*            |
 
 ```typescript
 import { SpeakeasyAuth0Example } from "todo";
-import { SDKValidationError } from "todo/models/errors";
+import { ErrorT, SDKValidationError } from "todo/models/errors";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   let result;
   try {
-    result = await speakeasyAuth0Example.getTodo();
+    result = await speakeasyAuth0Example.todos.list();
 
     // Handle the result
     console.log(result);
@@ -244,6 +254,11 @@ async function run() {
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof ErrorT): {
+        // Handle err.data$: ErrorTData
+        console.error(err);
         return;
       }
       default: {
@@ -271,12 +286,14 @@ import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   serverURL: "http://localhost:3000",
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo();
+  const result = await speakeasyAuth0Example.todos.list();
 
   // Handle the result
   console.log(result);
@@ -343,21 +360,23 @@ const sdk = new SpeakeasyAuth0Example({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type   | Scheme       | Environment Variable                         |
-| ------------------------------ | ------ | ------------ | -------------------------------------------- |
-| `oAuth2ClientCredentialScheme` | oauth2 | OAuth2 token | `SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME` |
+| Name                          | Type   | Scheme                         | Environment Variable                                                          |
+| ----------------------------- | ------ | ------------------------------ | ----------------------------------------------------------------------------- |
+| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow | `SPEAKEASY_CLIENT_ID`<br/>`SPEAKEASY_CLIENT_SECRET`<br/>`SPEAKEASY_TOKEN_URL` |
 
-To authenticate with the API the `oAuth2ClientCredentialScheme` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  oAuth2ClientCredentialScheme:
-    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await speakeasyAuth0Example.getTodo();
+  const result = await speakeasyAuth0Example.todos.list();
 
   // Handle the result
   console.log(result);

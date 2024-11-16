@@ -1,0 +1,92 @@
+openapi: 3.1.0
+servers:
+  - url: http://localhost:3000
+info:
+  version: 1.0.0
+  title: Example API
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 500
+    maxInterval: 60000
+    maxElapsedTime: 3600000
+    exponent: 1.5
+  statusCodes:
+    - 5XX
+  retryConnectionErrors: true
+x-speakeasy-errors:
+  statusCodes:
+    - 5XX
+    - 4XX
+security:
+  - OAuth2ClientCredentialScheme: []
+components:
+  securitySchemes:
+    OAuth2ClientCredentialScheme:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://dev-ttwo7r05pkr6nozn.us.auth0.com/oauth/token
+          scopes: {}
+  schemas:
+    Todo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        completed:
+          type: boolean
+      required:
+        - id
+        - title
+        - completed
+      example:
+        id: "<RANDOM_UUID>"
+        title: Buy milk
+        completed: false
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: number
+      required:
+        - message
+        - code
+      example:
+        message: Unauthorized
+        code: 401
+  parameters: {}
+paths:
+  "/todo":
+    get:
+      operationId: listTodos
+      description: List all todos
+      x-speakeasy-group: todos
+      x-speakeasy-name-override: list
+      responses:
+        "200":
+          description: List of todos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Todo"
+              example:
+                - id: "<RANDOM_UUID>"
+                  title: Buy milk
+                  completed: false
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+              example:
+                message: Unauthorized
+                code: 401

@@ -83,10 +83,8 @@ type SecurityInputOAuth2 = {
 
 type SecurityInputOAuth2ClientCredentials = {
   type: "oauth2:client_credentials";
-  value:
-    | { clientID?: string | undefined; clientSecret?: string | undefined }
-    | null
-    | undefined;
+  value: string | null | undefined;
+  fieldName: string;
 };
 
 type SecurityInputOAuth2PasswordCredentials = {
@@ -137,8 +135,6 @@ export function resolveSecurity(
         return (
           typeof o.value === "string" && !!o.value
         );
-      } else if (o.type === "oauth2:client_credentials") {
-        return o.value.clientID != null || o.value.clientSecret != null;
       } else if (typeof o.value === "string") {
         return !!o.value;
       } else {
@@ -235,10 +231,14 @@ export function resolveGlobalSecurity(
   return resolveSecurity(
     [
       {
-        fieldName: "Authorization",
-        type: "oauth2",
-        value: security?.oAuth2ClientCredentialScheme
-          ?? env().SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME,
+        fieldName: "clientID",
+        type: "oauth2:client_credentials",
+        value: security?.clientID ?? env().SPEAKEASY_CLIENT_ID,
+      },
+      {
+        fieldName: "clientSecret",
+        type: "oauth2:client_credentials",
+        value: security?.clientSecret ?? env().SPEAKEASY_CLIENT_SECRET,
       },
     ],
   );

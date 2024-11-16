@@ -20,17 +20,20 @@ specific category of applications.
 
 ```typescript
 import { SpeakeasyAuth0ExampleCore } from "todo/core.js";
-import { getTodo } from "todo/funcs/getTodo.js";
+import { todosList } from "todo/funcs/todosList.js";
 import { SDKValidationError } from "todo/models/errors/sdkvalidationerror.js";
 
 // Use `SpeakeasyAuth0ExampleCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const speakeasyAuth0Example = new SpeakeasyAuth0ExampleCore({
-  oAuth2ClientCredentialScheme: process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
+  security: {
+    clientID: process.env["SPEAKEASY_CLIENT_ID"] ?? "",
+    clientSecret: process.env["SPEAKEASY_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await getTodo(speakeasyAuth0Example);
+  const res = await todosList(speakeasyAuth0Example);
 
   switch (true) {
     case res.ok:
