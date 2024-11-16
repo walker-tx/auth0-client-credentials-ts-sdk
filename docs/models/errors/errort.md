@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ErrorT } from "todo/models/errors";
+import { ErrorT } from "auto0_client_cred_example_oas/models/errors";
 
 // No examples available for this model
 ```

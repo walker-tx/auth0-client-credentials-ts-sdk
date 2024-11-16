@@ -16,7 +16,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.4.3
+  version: 0.4.5
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -42,7 +42,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: todo
+  packageName: auto0_client_cred_example_oas
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true

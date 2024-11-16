@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Security } from "todo/models/components";
+import { Security } from "auto0_client_cred_example_oas/models/components";
 
 let value: Security = {};
 ```

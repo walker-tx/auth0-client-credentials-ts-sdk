@@ -1,12 +1,12 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-  auth0_example_oas:
+  auto0_client_cred_example_oas:
     inputs:
       - location: openapi.yaml
     registry:
       location: registry.speakeasyapi.dev/walker/walker/auth-0-example-oas
 targets:
-  auth0_example:
+  auto0_client_cred_example_oas:
     target: typescript
-    source: auth0_example_oas
+    source: auto0_client_cred_example_oas

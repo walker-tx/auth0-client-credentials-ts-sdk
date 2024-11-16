@@ -14,7 +14,7 @@ List all todos
 ### Example Usage
 
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {
@@ -38,8 +38,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SpeakeasyAuth0ExampleCore } from "todo/core.js";
-import { todosList } from "todo/funcs/todosList.js";
+import { SpeakeasyAuth0ExampleCore } from "auto0_client_cred_example_oas/core.js";
+import { todosList } from "auto0_client_cred_example_oas/funcs/todosList.js";
 
 // Use `SpeakeasyAuth0ExampleCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

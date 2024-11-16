@@ -81,7 +81,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {
@@ -143,7 +143,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {
@@ -176,7 +176,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   retryConfig: {
@@ -230,8 +230,11 @@ In addition, when custom error responses are specified for an operation, the SDK
 | errors.APIError | 4XX, 5XX    | \*/\*            |
 
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
-import { ErrorT, SDKValidationError } from "todo/models/errors";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
+import {
+  ErrorT,
+  SDKValidationError,
+} from "auto0_client_cred_example_oas/models/errors";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {
@@ -282,7 +285,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   serverURL: "http://localhost:3000",
@@ -322,8 +325,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
-import { HTTPClient } from "todo/lib/http";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
+import { HTTPClient } from "auto0_client_cred_example_oas/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -366,7 +369,7 @@ This SDK supports the following security scheme globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {
@@ -398,7 +401,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const sdk = new SpeakeasyAuth0Example({ debugLogger: console });
 ```

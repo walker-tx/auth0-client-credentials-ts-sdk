@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SpeakeasyAuth0Example } from "todo";
+import { SpeakeasyAuth0Example } from "auto0_client_cred_example_oas";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   security: {

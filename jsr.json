@@ -1,8 +1,8 @@
 
 
 {
-  "name": "todo",
-  "version": "0.4.3",
+  "name": "auto0_client_cred_example_oas",
+  "version": "0.4.5",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

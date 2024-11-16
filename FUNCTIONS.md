@@ -19,9 +19,9 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { SpeakeasyAuth0ExampleCore } from "todo/core.js";
-import { todosList } from "todo/funcs/todosList.js";
-import { SDKValidationError } from "todo/models/errors/sdkvalidationerror.js";
+import { SpeakeasyAuth0ExampleCore } from "auto0_client_cred_example_oas/core.js";
+import { todosList } from "auto0_client_cred_example_oas/funcs/todosList.js";
+import { SDKValidationError } from "auto0_client_cred_example_oas/models/errors/sdkvalidationerror.js";
 
 // Use `SpeakeasyAuth0ExampleCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

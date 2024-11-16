@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Todo } from "todo/models/components";
+import { Todo } from "auto0_client_cred_example_oas/models/components";
 
 let value: Todo = {
   id: "<RANDOM_UUID>",

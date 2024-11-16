@@ -6,6 +6,12 @@ sources:
         sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
         tags:
             - latest
+    auto0_client_cred_example_oas:
+        sourceNamespace: auth-0-example-oas
+        sourceRevisionDigest: sha256:e7b9e23e1f7d279feb115d6903254bb4e6ba35a4ee245f8e36856d84e39324ee
+        sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
+        tags:
+            - latest
     petstore-oas:
         sourceNamespace: petstore-oas
         sourceRevisionDigest: sha256:676e225b7e12b2607f423b22547afe89d40b11c7697ba7c8eb6229dd5a03c9d4
@@ -18,6 +24,11 @@ targets:
         sourceNamespace: auth-0-example-oas
         sourceRevisionDigest: sha256:f86c353efc450d0b2ab69b83fc32d68cdb97a6d2b44ab4928cc5807e4d070603
         sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
+    auto0_client_cred_example_oas:
+        source: auto0_client_cred_example_oas
+        sourceNamespace: auth-0-example-oas
+        sourceRevisionDigest: sha256:e7b9e23e1f7d279feb115d6903254bb4e6ba35a4ee245f8e36856d84e39324ee
+        sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
     petstore:
         source: auth0_example_oas
         sourceNamespace: auth-0-example-oas
@@ -27,12 +38,12 @@ workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        auth0_example_oas:
+        auto0_client_cred_example_oas:
             inputs:
                 - location: openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/walker/walker/auth-0-example-oas
     targets:
-        auth0_example:
+        auto0_client_cred_example_oas:
             target: typescript
-            source: auth0_example_oas
+            source: auto0_client_cred_example_oas
