@@ -8,6 +8,7 @@
 /hooks
 /index.*
 /core.*
+/oauth.*
 /cjs
 /esm
 /dist
