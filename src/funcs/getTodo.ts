@@ -44,7 +44,12 @@ export async function getTodo(
     Accept: "application/json",
   });
 
-  const securityInput = await extractSecurity(client._options.security);
+  const secConfig = await extractSecurity(
+    client._options.oAuth2ClientCredentialScheme,
+  );
+  const securityInput = secConfig == null
+    ? {}
+    : { oAuth2ClientCredentialScheme: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
@@ -53,7 +58,7 @@ export async function getTodo(
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.security,
+    securitySource: client._options.oAuth2ClientCredentialScheme,
     retryConfig: options?.retries
       || client._options.retryConfig
       || {

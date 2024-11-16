@@ -235,14 +235,10 @@ export function resolveGlobalSecurity(
   return resolveSecurity(
     [
       {
-        fieldName: "clientId",
-        type: "http:custom",
-        value: security?.clientId ?? env().SPEAKEASY_CLIENT_ID,
-      },
-      {
-        fieldName: "clientSecret",
-        type: "http:custom",
-        value: security?.clientSecret ?? env().SPEAKEASY_CLIENT_SECRET,
+        fieldName: "Authorization",
+        type: "oauth2",
+        value: security?.oAuth2ClientCredentialScheme
+          ?? env().SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME,
       },
     ],
   );

@@ -84,10 +84,8 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -145,10 +143,8 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -188,10 +184,8 @@ const speakeasyAuth0Example = new SpeakeasyAuth0Example({
     },
     retryConnectionErrors: false,
   },
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -232,10 +226,8 @@ import { SpeakeasyAuth0Example } from "todo";
 import { SDKValidationError } from "todo/models/errors";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -279,10 +271,8 @@ import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
   serverURL: "http://localhost:3000",
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -353,19 +343,17 @@ const sdk = new SpeakeasyAuth0Example({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type | Scheme      | Environment Variable                                |
-| ----------------------------- | ---- | ----------- | --------------------------------------------------- |
-| `clientId`<br/>`clientSecret` | http | Custom HTTP | `SPEAKEASY_CLIENT_ID`<br/>`SPEAKEASY_CLIENT_SECRET` |
+| Name                           | Type   | Scheme       | Environment Variable                         |
+| ------------------------------ | ------ | ------------ | -------------------------------------------- |
+| `oAuth2ClientCredentialScheme` | oauth2 | OAuth2 token | `SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME` |
 
-You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
+To authenticate with the API the `oAuth2ClientCredentialScheme` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme:
+    process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {

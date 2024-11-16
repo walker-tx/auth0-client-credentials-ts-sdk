@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 84a8ec70-6436-43c1-88e4-d10c31e2adfd
 management:
-  docChecksum: b7177667137ba20db766eba4acef1f97
+  docChecksum: a874c0dc351f63220d1f6be9ad7373d3
   docVersion: 1.0.0
   speakeasyVersion: 1.438.1
   generationVersion: 2.457.2
-  releaseVersion: 0.1.2
-  configChecksum: aa07556ab8db6a32ce788b983c4f2c11
+  releaseVersion: 0.2.0
+  configChecksum: 529a6503f67e76e38178162138b5431c
 features:
   typescript:
     additionalDependencies: 0.1.0
     core: 3.18.3
-    customSecuritySchemes: 0.1.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     responseFormat: 0.2.3
     retries: 2.83.0

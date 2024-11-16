@@ -10,7 +10,7 @@ const tokenResponseSchema = zod_1.z.object({
     expires_in: zod_1.z.number().positive(),
 });
 const expirationTolerance = 5 * 60 * 1000;
-function withAuthorization(clientID, clientSecret, options) {
+function withAuthorization(clientID, clientSecret, options = {}) {
     const { tokenStore = new InMemoryTokenStore() } = options;
     return async () => {
         try {

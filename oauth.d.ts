@@ -1,6 +1,6 @@
-export declare function withAuthorization(clientID: string, clientSecret: string, options: {
+export declare function withAuthorization(clientID: string, clientSecret: string, options?: Partial<{
     tokenStore: TokenStore;
-}): () => Promise<string>;
+}>): () => Promise<string>;
 /**
  * A TokenStore is used to save and retrieve OAuth tokens for use across SDK
  * method calls. This interface can be implemented to store tokens in memory,

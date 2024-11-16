@@ -3,10 +3,10 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type Security = {
-  clientId?: string | undefined;
-  clientSecret?: string | undefined;
+  oAuth2ClientCredentialScheme?: string | undefined;
 };
 
 /** @internal */
@@ -15,14 +15,16 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
+  OAuth2ClientCredentialScheme: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "OAuth2ClientCredentialScheme": "oAuth2ClientCredentialScheme",
+  });
 });
 
 /** @internal */
 export type Security$Outbound = {
-  clientId?: string | undefined;
-  clientSecret?: string | undefined;
+  OAuth2ClientCredentialScheme?: string | undefined;
 };
 
 /** @internal */
@@ -31,8 +33,11 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
+  oAuth2ClientCredentialScheme: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    oAuth2ClientCredentialScheme: "OAuth2ClientCredentialScheme",
+  });
 });
 
 /**

@@ -16,10 +16,7 @@ List all todos
 import { SpeakeasyAuth0Example } from "todo";
 
 const speakeasyAuth0Example = new SpeakeasyAuth0Example({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme: process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {
@@ -43,10 +40,7 @@ import { getTodo } from "todo/funcs/getTodo.js";
 // Use `SpeakeasyAuth0ExampleCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const speakeasyAuth0Example = new SpeakeasyAuth0ExampleCore({
-  security: {
-    clientId: process.env["my-client-id"] ?? "",
-    clientSecret: process.env["my-client-secret"] ?? "",
-  },
+  oAuth2ClientCredentialScheme: process.env["SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME"] ?? "",
 });
 
 async function run() {

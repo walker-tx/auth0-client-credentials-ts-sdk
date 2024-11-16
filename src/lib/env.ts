@@ -7,15 +7,13 @@ import { dlv } from "./dlv.js";
 import * as z from "zod";
 
 export interface Env {
-  SPEAKEASY_CLIENT_ID?: string | undefined;
-  SPEAKEASY_CLIENT_SECRET?: string | undefined;
+  SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME?: string | undefined;
 
   SPEAKEASY_DEBUG?: boolean | undefined;
 }
 
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
-  SPEAKEASY_CLIENT_ID: z.string().optional(),
-  SPEAKEASY_CLIENT_SECRET: z.string().optional(),
+  SPEAKEASY_O_AUTH2_CLIENT_CREDENTIAL_SCHEME: z.string().optional(),
 
   SPEAKEASY_DEBUG: z.coerce.boolean().optional(),
 });

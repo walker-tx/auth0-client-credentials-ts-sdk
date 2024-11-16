@@ -12,7 +12,7 @@ const expirationTolerance = 5 * 60 * 1000;
 export function withAuthorization(
   clientID: string,
   clientSecret: string,
-  options: { tokenStore: TokenStore }
+  options: Partial<{ tokenStore: TokenStore }> = {}
 ) {
   const { tokenStore = new InMemoryTokenStore() } = options;
 
