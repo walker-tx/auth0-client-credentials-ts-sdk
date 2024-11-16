@@ -2,7 +2,7 @@ speakeasyVersion: 1.438.1
 sources:
     auth0_example_oas:
         sourceNamespace: auth-0-example-oas
-        sourceRevisionDigest: sha256:db716a0ccd477b8d5c57d2b58c83e7090de5e618dd2a3cde3e525046d9325436
+        sourceRevisionDigest: sha256:f86c353efc450d0b2ab69b83fc32d68cdb97a6d2b44ab4928cc5807e4d070603
         sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
         tags:
             - latest
@@ -16,7 +16,7 @@ targets:
     auth0_example:
         source: auth0_example_oas
         sourceNamespace: auth-0-example-oas
-        sourceRevisionDigest: sha256:db716a0ccd477b8d5c57d2b58c83e7090de5e618dd2a3cde3e525046d9325436
+        sourceRevisionDigest: sha256:f86c353efc450d0b2ab69b83fc32d68cdb97a6d2b44ab4928cc5807e4d070603
         sourceBlobDigest: sha256:21c31f42c3ad0aae807f0c5425a6a08bb76c131e40e1a20d91116f23e6a47f35
     petstore:
         source: auth0_example_oas
